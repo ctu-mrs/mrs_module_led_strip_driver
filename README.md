@@ -18,4 +18,15 @@ This driver uses the MRS LLCP protocol
 * Wire connection between the onboard computer and distribution board
 
 # How to run
-
+When your workspace is built and sourced call this command
+```bash
+   roslaunch led_strip_driver uav.launch
+```
+# How to use
+Call the following service
+```bash
+   rosservice call /YOUR_UAV_NAME/set_outpusts "output_a: 10
+   output_b: 10
+   output_vbat: false"
+```
+  
