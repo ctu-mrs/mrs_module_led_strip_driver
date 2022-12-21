@@ -6,7 +6,9 @@ This driver uses the [MRS LLCP protocol](https://github.com/ctu-mrs/mrs_llcp_ros
 ```mermaid
 flowchart LR
 A[led_strip_driver] <-->|ROS messages| B[mrs_llcp_ros]
-B <-->|UART| C[MRS LED module]-->D[LEDs]
+B <-->|UART| C[MRS LED module]
+C-->D[LEDs]
+C-->E[VBAT]
 ```
 
 # Requirements
