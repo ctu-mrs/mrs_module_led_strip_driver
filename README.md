@@ -1,6 +1,6 @@
 ## MRS LED strip module driver
 
-ROS driver for MRS LED module. This allows turning on and off the LED lights with the included 12V DC power outlets, as well as output straight from the battery.
+ROS driver for MRS LED module. This allows turning on and off the LED lights with the included 12V DC power outlets, as well as voltage output straight from the battery.
 This driver uses the [MRS LLCP protocol](https://github.com/ctu-mrs/mrs_llcp_ros).
 
 ```mermaid
