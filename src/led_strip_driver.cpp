@@ -2,7 +2,7 @@
 #include <ros/ros.h>
 #include <mrs_modules_msgs/Llcp.h>
 
-#include <mrs_modules_msgs/LedStripDriver.h>
+#include "led_strip_driver/LedStripDriverService.h"
 
 #include <string>
 
@@ -23,7 +23,7 @@ public:
 
 private:
   void callbackReceiveMessage(const mrs_modules_msgs::LlcpConstPtr &msg);
-  bool callbackSetOutputs(mrs_modules_msgs::LedStripDriver::Request &req, mrs_modules_msgs::LedStripDriver::Response &res);
+  bool callbackSetOutputs(led_strip_driver::LedStripDriverService::Request &req, led_strip_driver::LedStripDriverService::Response &res);
 
   ros::NodeHandle nh_;
 
@@ -95,7 +95,7 @@ void LedStripDriver::callbackReceiveMessage(const mrs_modules_msgs::LlcpConstPtr
 
 /* //{ callbackSetOutputs() */
 
-bool LedStripDriver::callbackSetOutputs(mrs_modules_msgs::LedStripDriver::Request &req, mrs_modules_msgs::LedStripDriver::Response &res) {
+bool LedStripDriver::callbackSetOutputs(led_strip_driver::LedStripDriverService::Request &req, led_strip_driver::LedStripDriverService::Response &res) {
 
   if (!is_initialized_) {
 

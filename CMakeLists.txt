@@ -8,14 +8,23 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   cmake_modules
   nodelet
-  mrs_msgs
+  mrs_modules_msgs
+  message_generation
+  )
+
+add_service_files(DIRECTORY srv FILES
+  LedStripDriverService.srv
+  )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
   )
 
 
 catkin_package(
   INCLUDE_DIRS
   LIBRARIES LedStripDriver
-  CATKIN_DEPENDS roscpp mrs_msgs
+  CATKIN_DEPENDS roscpp mrs_modules_msgs message_runtime
   )
 
 include_directories(
@@ -25,4 +34,4 @@ include_directories(
 
 add_library(LedStripDriver
   src/led_strip_driver.cpp
-)
+  )
