@@ -1,3 +1,9 @@
+//Program with Arduino as ISP programmer
+//Use Minicore Atmega board - 328 with internal oscilator at 8MHz, disable bootloader
+//arduino 1.8.19
+//Use Capacitor on the reset pin of the ISP programmer!
+
+
 extern "C" {
 #include <llcp.h>
 }
