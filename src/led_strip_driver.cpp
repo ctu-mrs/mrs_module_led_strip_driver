@@ -1,8 +1,8 @@
 #include <ros/package.h>
 #include <ros/ros.h>
-#include <mrs_msgs/Llcp.h>
+#include <mrs_modules_msgs/Llcp.h>
 
-#include <mrs_msgs/LedStripDriver.h>
+#include <mrs_modules_msgs/LedStripDriver.h>
 
 #include <string>
 
@@ -22,8 +22,8 @@ public:
   virtual void onInit();
 
 private:
-  void callbackReceiveMessage(const mrs_msgs::LlcpConstPtr &msg);
-  bool callbackSetOutputs(mrs_msgs::LedStripDriver::Request &req, mrs_msgs::LedStripDriver::Response &res);
+  void callbackReceiveMessage(const mrs_modules_msgs::LlcpConstPtr &msg);
+  bool callbackSetOutputs(mrs_modules_msgs::LedStripDriver::Request &req, mrs_modules_msgs::LedStripDriver::Response &res);
 
   ros::NodeHandle nh_;
 
@@ -47,7 +47,7 @@ void LedStripDriver::onInit() {
   ros::Time::waitForValid();
 
   // Publishers
-  llcp_publisher_ = nh_.advertise<mrs_msgs::Llcp>("llcp_out", 1);
+  llcp_publisher_ = nh_.advertise<mrs_modules_msgs::Llcp>("llcp_out", 1);
 
   llcp_subscriber_ = nh_.subscribe("llcp_in", 10, &LedStripDriver::callbackReceiveMessage, this, ros::TransportHints().tcpNoDelay());
 
@@ -63,7 +63,7 @@ void LedStripDriver::onInit() {
 
 /* callbackReceiveMessage() //{ */
 
-void LedStripDriver::callbackReceiveMessage(const mrs_msgs::LlcpConstPtr &msg) {
+void LedStripDriver::callbackReceiveMessage(const mrs_modules_msgs::LlcpConstPtr &msg) {
 
   if (!is_initialized_) {
     return;
@@ -95,7 +95,7 @@ void LedStripDriver::callbackReceiveMessage(const mrs_msgs::LlcpConstPtr &msg) {
 
 /* //{ callbackSetOutputs() */
 
-bool LedStripDriver::callbackSetOutputs(mrs_msgs::LedStripDriver::Request &req, mrs_msgs::LedStripDriver::Response &res) {
+bool LedStripDriver::callbackSetOutputs(mrs_modules_msgs::LedStripDriver::Request &req, mrs_modules_msgs::LedStripDriver::Response &res) {
 
   if (!is_initialized_) {
 
@@ -112,7 +112,7 @@ bool LedStripDriver::callbackSetOutputs(mrs_msgs::LedStripDriver::Request &req, 
   msg_out.set_out_b    = req.output_b;
   msg_out.set_out_vbat = req.output_vbat;
 
-  mrs_msgs::Llcp llcp_msg;
+  mrs_modules_msgs::Llcp llcp_msg;
 
   uint8_t *msg_ptr = (uint8_t *)&msg_out;
 
